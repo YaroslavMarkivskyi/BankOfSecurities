@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="{% static '/css/dep_register_style.css' %}" rel="stylesheet" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Реєстрація клієнтів</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    </head>
+<body>
+    <div class="main">
+
+        <section class="Реєстрація">
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form">
+                        {% csrf_token %}
+                        <h2 class="form-title">Створити акаунт</h2>
+                        {% for item in depositor_form %}
+                             <div class="form-group">
+                                 <input class="form-input"
+                                        name="{{ item.name }}" id="{{ item.id }}" placeholder="{{ item.label }}"/>
+                             </div>
+                        {% endfor %}
+                    <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Реєстрація"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

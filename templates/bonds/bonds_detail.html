@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center ">
+        <table class="table table-light w-50">
+            <tbody>
+                {% for header_key, header_value in bond_headers.items %}
+                    <tr>
+                        <th scope="row">{{ header_value }}</th>
+                        {% for bond_key, bond_value in bond.items %}
+                            {% if header_key == bond_key %}
+                                <td>{{ bond_value }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex justify-content-center align-items-center ">
+    <table class="table table-light w-50">
+        <thead>
+            <tr>
+                {% for header in payment_days_headers.values %}
+                    <th scope="col">{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment_date in payment_days %}
+                <tr>
+                    {% for key, value in payment_date.items %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+<form method="post">
+        <div class="d-flex justify-content-center align-items-center w-50">
+                {% csrf_token %}
+                <div class="col-auto">
+                    {{ form.as_p }}
+                        <input type="hidden" id="id_slug" name="slug" value="{{ bond.slug }}">
+                        <input type="hidden" id="id_price" name="price" value="{{ bond.price }}">
+                </div>
+            
+                <div class="col-auto">
+                    <button type="submit" name="submit" id="submit" class="btn btn-primary mb-3">Купити</button>
+                </div>
+            
+        </div>
+    </form>
+
+{% endblock %}

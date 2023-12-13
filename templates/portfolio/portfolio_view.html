@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <div class="d-flex justify-content-center align-items-center ">
+    <table class="table table-light w-50">
+        <thead>
+            <tr>
+                {% for header in bill_headers.values %}
+                    <th scope="col">{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for value in bill.values %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+     <div class="d-flex justify-content-center align-items-center ">
+    <table class="table table-light w-50">
+        <thead>
+            <tr>
+                {% for header in bonds_headers.values %}
+                    <th scope="col">{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for bond in bonds %}
+                <tr>
+                    {% for key, value in bond.items %}
+                       {% if key == 'name' %}
+                            <td><a href="{{ bond.slug }}" class="link-secondary">{{ value }}</a></td>
+                        {% elif key != 'slug' %}
+                        	<td>{{ value }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+
+{% endblock %}

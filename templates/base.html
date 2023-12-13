@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+<div style="background: #f5f6fa; height: 2000px">
+{% block main_menu %}
+    <div class="d-flex justify-content-center align-items-center ">
+        <div class="w-50 p-2" style="background-color: #d5d6d5;">
+            <ul class="nav nav-pills nav-fill">
+                {% for m in menu %}
+                    {% if m.url_name == 'portfolio' %}
+                        <li class="nav-item">
+                            <a class="nav-link text-muted" aria-current="page" href="{% url m.url_name  user.id%}">
+                                {{m.title}}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link text-muted" aria-current="page" href="{% url m.url_name %}">
+                                {{m.title}}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock main_menu %}
+<div class="w-10 p-4">
+</div>
+
+
+
+
+{% block content %}
+
+{% endblock %}
+</div>
+</body>
+</html>

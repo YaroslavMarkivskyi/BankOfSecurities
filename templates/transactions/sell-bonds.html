@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="form-group">
+        <input type="submit" name="submit" id="submit" class="form-submit" value="Продати"/>
+    </div>
+</form>
+
+
+{% endblock %}

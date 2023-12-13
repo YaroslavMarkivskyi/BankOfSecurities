@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center ">
+    <table class="table table-light w-75" style="background: #fffffe;">
+        <thead>
+            <tr>
+                {% for header in headers.values %}
+                    <th scope="col">{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for bond in bonds %}
+                <tr>
+                    {% for key, value in bond.items %}
+                        {% if key == 'name' %}
+                            <td><a href="{{ bond.slug }}" class="link-secondary">{{ value }}</a></td>
+                        {% elif key != 'slug' %}
+                        	<td>{{ value }}</td>
+                        {% endif %} 
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
